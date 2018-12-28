@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+    <title>javascript - Desktop notification</title>
+    <script>
+
+           function ShowNotification() {
+               if (!("Notification" in window)) {
+                   console.log("This browser does not support desktop notification");
+               }
+               else if (Notification.permission === "granted") {
+                   var notification = new Notification("Created By", {
+                       icon: 'Images/end-chat.png',
+                       body: 'Ritesh Kumar Sriwastav'
+                   });
+               }
+               else if (Notification.permission !== 'denied') {
+                   Notification.requestPermission(function (permission) {
+                       if (!('permission' in Notification)) {
+                           Notification.permission = permission;
+                       }
+                       if (permission === "granted") {
+                           var notification = new Notification("Demo title", {
+                               icon: 'Images/end-chat.png',
+                               body: 'This is a simple desktop notification'
+                           });
+                       }
+                   });
+               }
+           }
+
+    </script>
+</head>
+<body>
+    <button onclick="ShowNotification()">Show Notification</button>
+</body>
+</html>
